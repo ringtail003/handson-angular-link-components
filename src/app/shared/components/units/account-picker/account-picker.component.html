@@ -1,1 +1,4 @@
-<select></select>
+<select>
+  <option disabled>選択してください</option>
+  <option *ngFor="let account of accounts" [value]="account.code">{{account.name}}</option>
+</select>
