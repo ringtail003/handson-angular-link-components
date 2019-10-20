@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Account } from 'src/app/shared/types/account';
 
 @Component({
   selector: 'budgeted-account-selector',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: []
 })
 export class BudgetedAccountSelectorComponent implements OnInit {
+  @Input() accounts: Account[] = [];
 
   constructor() { }
 
