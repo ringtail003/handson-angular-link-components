@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../../types/account';
-import { AccountRepository } from '../../../services';
+import { AccountRepository, BudgetScheduleRepository } from '../../../services';
+import { BudgetSchedule } from '../../../types/budget-schedule';
 
 @Component({
   selector: 'budget-scheduler',
@@ -9,15 +10,30 @@ import { AccountRepository } from '../../../services';
 })
 export class BudgetSchedulerComponent implements OnInit {
   accounts: Account[] = [];
+  budgetSchedule: BudgetSchedule = null;
 
   constructor(
     private accountRepository: AccountRepository,
+    private budgetScheduleRepository: BudgetScheduleRepository,
   ) { }
 
   ngOnInit() {
     this.accountRepository
       .getList$()
-      .subscribe(accounts => this.accounts = accounts);
+      .subscribe(accounts => this.accounts = accounts)
+    ;
+
+    this.budgetScheduleRepository
+      .get$()
+      .subscribe(budgetSchedule => this.budgetSchedule = budgetSchedule)
+    ;
+  }
+
+  handleSave(budgetSchedule: BudgetSchedule) {
+    this.budgetScheduleRepository
+      .save$(budgetSchedule)
+      .subscribe(budgetSchedule => this.budgetSchedule = budgetSchedule)
+    ;
   }
 
 }

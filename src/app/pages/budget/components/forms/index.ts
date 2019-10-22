@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { UnitComponentModule } from '../units';
 import { BudgetScheduleEditorComponent } from './budget-schedule-editor/budget-schedule-editor.component';
 import { ContainerComponentModule } from '../containers';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { ContainerComponentModule } from '../containers';
   imports: [
     UnitComponentModule,
     ContainerComponentModule,
+    CommonModule,
   ],
   exports: [
     BudgetScheduleEditorComponent,

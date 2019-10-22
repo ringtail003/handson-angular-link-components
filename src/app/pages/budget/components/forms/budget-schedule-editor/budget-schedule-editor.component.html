@@ -1,10 +1,17 @@
 <label>期間</label>
 <term-editor
-  [term]="term"
-  (onTermChanged)="handleTermChanged()"
+  [term]="budgetSchedule.term"
+  (onTermChanged)="handleTermChanged($event)"
 ></term-editor>
 
 <label>アカウントと予算</label>
 <budgeted-account-selector
   [accounts]="accounts"
 ></budgeted-account-selector>
+
+<simple-action-button
+  [label]="labels.save"
+  (onAction)="handleSaveAction()"
+></simple-action-button>
+
+<div *ngIf="budgetSchedule.id">保存されました</div>

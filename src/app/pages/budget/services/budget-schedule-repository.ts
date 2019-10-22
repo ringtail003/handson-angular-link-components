@@ -25,6 +25,6 @@ export class BudgetScheduleRepository {
 
     return new Rx.Observable(subscriber =>
       subscriber.next(this.budgetSchedule)
-    )
+    );
   }
 }

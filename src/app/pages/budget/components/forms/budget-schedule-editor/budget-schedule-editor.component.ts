@@ -1,24 +1,42 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { Term } from '../../../types/term';
+import { BudgetSchedule } from '../../../types/budget-schedule';
+import { ObjectCopy } from 'src/app/shared/utils';
 
 @Component({
   selector: 'budget-schedule-editor',
   templateUrl: './budget-schedule-editor.component.html',
   styleUrls: []
 })
-export class BudgetScheduleEditorComponent implements OnInit {
+export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   @Input() accounts: Account[] = [];
+  @Input() budgetSchedule: BudgetSchedule = null;
+  @Output() onSave = new EventEmitter<BudgetSchedule>();
 
-  term: Term = {start: null, end: null};
+  labels = {
+    save: '保存'
+  } as const;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  handleTermChanged() {
-    // WIP
+  ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
+    if (!changes.budgetSchedule) {
+      return;
+    }
+
+    this.budgetSchedule = ObjectCopy(this.budgetSchedule);
+  }
+
+  handleTermChanged(term: Term) {
+    this.budgetSchedule.term = ObjectCopy(term);
+  }
+
+  handleSaveAction() {
+    this.onSave.emit(this.budgetSchedule);
   }
 
 }
