@@ -7,7 +7,7 @@ import { ObjectCopy } from 'src/app/shared/utils';
 @Component({
   selector: 'budget-schedule-editor',
   templateUrl: './budget-schedule-editor.component.html',
-  styleUrls: []
+  styleUrls: ['./budget-schedule-editor.component.scss'],
 })
 export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   @Input() accounts: Account[] = [];

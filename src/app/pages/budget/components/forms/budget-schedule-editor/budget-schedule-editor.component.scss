@@ -1,0 +1,43 @@
+label {
+  display: block;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+:host ::ng-deep account-list {
+  button {
+    border-radius: 4px;
+    padding: 4px;
+    background: #fb3f42;
+    color: white;
+  }
+
+  .name {
+    background: #a1cbf9;
+    padding: 6px;
+    border-radius: 2px;
+    font-size: 0.8em;
+  }
+}
+
+:host ::ng-deep simple-action-button button {
+  border-radius: 7px;
+  margin-top: 20px;
+  padding: 8px;
+  background: #2b44f7;
+  color: white;
+}
+
+:host ::ng-deep input {
+  &[type="number"] {
+    border-radius: 3px;
+    border: solid 1px #cccccc;
+    padding: 5px;
+  }
+  &[type="text"] {
+    border-radius: 3px;
+    border: solid 1px #cccccc;
+    padding: 5px;
+  }
+}
