@@ -1,4 +1,9 @@
 <account-picker
-  [accounts]="accounts"
+  [accounts]="selectableAccounts"
+  (onAccountPicked)="handleAccountPicked($event)"
 ></account-picker>
-<account-list></account-list>
+<account-list
+  [accounts]="budgetedAccounts"
+  (onAccountDelete)="handleAccountDelete($event)"
+  (onBudgetChanged)="handleBudgetChanged($event)"
+></account-list>

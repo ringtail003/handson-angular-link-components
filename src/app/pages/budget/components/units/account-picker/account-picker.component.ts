@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 
 @Component({
@@ -8,10 +8,17 @@ import { Account } from 'src/app/pages/budget/types/account';
 })
 export class AccountPickerComponent implements OnInit {
   @Input() accounts: Account[] = [];
+  @Output() onAccountPicked = new EventEmitter<Account>();
+
+  chosen: Account = null;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChanged() {
+    this.onAccountPicked.emit(this.chosen);
   }
 
 }

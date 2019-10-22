@@ -1,5 +1,15 @@
 <table>
-  <tr>
-    <td>test</td>
+  <tr *ngFor="let account of input">
+    <td>{{account.name}}</td>
+    <td>
+      <input
+        type="number"
+        [(ngModel)]="account.budget"
+        (change)="onChanged(account)"
+      >
+    </td>
+    <td>
+      <button (click)="onDelete(account)">削除</button>
+    </td>
   </tr>
 </table>
