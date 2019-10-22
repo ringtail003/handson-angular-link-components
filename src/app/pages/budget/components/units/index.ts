@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TermEditorComponent } from './term-editor/term-editor.component';
 import { SimpleActionButtonComponent } from './simple-action-button/simple-action-button.component';
+import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { SimpleActionButtonComponent } from './simple-action-button/simple-actio
     AccountListComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
+    SimpleLineInputComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { SimpleActionButtonComponent } from './simple-action-button/simple-actio
     AccountListComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
+    SimpleLineInputComponent,
   ],
 })
 export class UnitComponentModule {}

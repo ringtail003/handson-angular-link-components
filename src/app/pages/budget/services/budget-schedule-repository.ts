@@ -7,6 +7,7 @@ import { BudgetSchedule } from '../../budget/types/budget-schedule';
 })
 export class BudgetScheduleRepository {
   private budgetSchedule: BudgetSchedule = {
+    name: null,
     accounts: [],
     term: {
       start: null,
@@ -22,6 +23,7 @@ export class BudgetScheduleRepository {
 
   save$(value: BudgetSchedule): Rx.Observable<BudgetSchedule> {
     this.budgetSchedule = { id: 1, ...value  };
+    console.info(this.budgetSchedule);
 
     return new Rx.Observable(subscriber =>
       subscriber.next(this.budgetSchedule)

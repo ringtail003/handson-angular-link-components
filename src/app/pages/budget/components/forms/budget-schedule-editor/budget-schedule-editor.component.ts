@@ -35,6 +35,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     this.budgetSchedule.term = ObjectCopy(term);
   }
 
+  handleNameChanged(name: string) {
+    this.budgetSchedule.name = name;
+  }
+
   handleSaveAction() {
     this.onSave.emit(this.budgetSchedule);
   }

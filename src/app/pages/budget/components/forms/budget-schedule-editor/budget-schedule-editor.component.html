@@ -1,3 +1,9 @@
+<label>設定名</label>
+<simple-line-input
+  [text]="budgetSchedule.name"
+  (onTextChanged)="handleNameChanged($event)"
+></simple-line-input>
+
 <label>期間</label>
 <term-editor
   [term]="budgetSchedule.term"
