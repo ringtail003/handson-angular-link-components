@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account } from 'src/app/shared/types/account';
+import { Account } from 'src/app/pages/budget/types/account';
 
 @Component({
   selector: 'account-picker',

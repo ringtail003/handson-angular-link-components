@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BudgetSchedulerComponent } from './budget-scheduler/budget-scheduler.component';
-import { SharedComponentModule } from 'src/app/shared/components/module';
+import { FormComponentModule } from '../forms';
 
 @NgModule({
   declarations: [
     BudgetSchedulerComponent,
   ],
   imports: [
-    SharedComponentModule,
+    FormComponentModule,
   ],
   exports: [
     BudgetSchedulerComponent,
   ],
 })
-export class BudgetPageWidgetComponentModule {}
+export class WidgetComponentModule {}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BudgetComponent } from './budget.component';
 import { SharedModule } from '../../shared/module';
-import { BudgetPageWidgetComponentModule } from './components/widgets/module';
+import { WidgetComponentModule } from './components/widgets';
 
 @NgModule({
   declarations: [
@@ -9,10 +9,10 @@ import { BudgetPageWidgetComponentModule } from './components/widgets/module';
   ],
   imports: [
     SharedModule,
-    BudgetPageWidgetComponentModule,
+    WidgetComponentModule,
   ],
   exports: [
     BudgetComponent,
   ],
 })
-export class BudgetPageComponentModule {}
+export class BudgetComponentModule {}

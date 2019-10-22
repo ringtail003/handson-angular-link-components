@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BudgetPageComponentModule } from './budget/module';
+import { BudgetComponentModule } from './budget';
 
 @NgModule({
-  exports: [
-    BudgetPageComponentModule,
+  imports: [
+    BudgetComponentModule,
   ],
 })
 export class PageComponentModule {}

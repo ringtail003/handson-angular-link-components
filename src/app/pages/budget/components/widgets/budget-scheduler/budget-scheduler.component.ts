@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountRepository } from 'src/app/shared/services/account-repository';
-import { Account } from 'src/app/shared/types/account';
+import { Account } from '../../../types/account';
+import { AccountRepository } from '../../../services';
 
 @Component({
   selector: 'budget-scheduler',
