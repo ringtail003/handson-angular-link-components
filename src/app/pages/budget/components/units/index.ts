@@ -3,11 +3,13 @@ import { AccountPickerComponent } from './account-picker/account-picker.componen
 import { AccountListComponent } from './account-list/account-list.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TermEditorComponent } from './term-editor/term-editor.component';
 
 @NgModule({
   declarations: [
     AccountPickerComponent,
     AccountListComponent,
+    TermEditorComponent,
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     AccountPickerComponent,
     AccountListComponent,
+    TermEditorComponent,
   ],
 })
 export class UnitComponentModule {}

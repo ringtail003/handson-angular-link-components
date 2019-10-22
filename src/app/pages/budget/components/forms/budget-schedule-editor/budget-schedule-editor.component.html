@@ -1,3 +1,9 @@
+<label>期間</label>
+<term-editor
+  [term]="term"
+  (onTermChanged)="handleTermChanged()"
+></term-editor>
+
 <label>アカウントと予算</label>
 <budgeted-account-selector
   [accounts]="accounts"
