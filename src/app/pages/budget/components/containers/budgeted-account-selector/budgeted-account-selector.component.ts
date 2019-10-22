@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { BudgetedAccount, toBudgetedAccount } from '../../../types/budgeted-account';
 
@@ -9,6 +9,7 @@ import { BudgetedAccount, toBudgetedAccount } from '../../../types/budgeted-acco
 })
 export class BudgetedAccountSelectorComponent implements OnInit {
   @Input() accounts: Account[] = [];
+  @Output() onBudgetAccountsChanged = new EventEmitter<BudgetedAccount[]>();
 
   selectableAccounts: Account[] = [];
   budgetedAccounts: BudgetedAccount[] = [];
@@ -22,15 +23,18 @@ export class BudgetedAccountSelectorComponent implements OnInit {
   handleAccountPicked(account: Account) {
     this.budgetedAccounts = this.budgetedAccounts.concat(toBudgetedAccount(account));
     this.selectableAccounts = this.excludes(this.accounts, this.budgetedAccounts);
+    this.emit();
   }
 
   handleAccountDelete(account: BudgetedAccount) {
     this.budgetedAccounts = this.remove(this.budgetedAccounts, account);
     this.selectableAccounts = this.excludes(this.accounts, this.budgetedAccounts);
+    this.emit();
   }
 
   handleBudgetChanged(account) {
     this.budgetedAccounts.find(item => item.code === account.code).budget = account.budget;
+    this.emit();
   }
 
   private remove(list, target) {
@@ -39,6 +43,10 @@ export class BudgetedAccountSelectorComponent implements OnInit {
 
   private excludes(sources, excludes) {
     return sources.filter(source => !excludes.find(exclude => source.code === exclude.code));
+  }
+
+  private emit() {
+    this.onBudgetAccountsChanged.emit(this.budgetedAccounts);
   }
 
 }

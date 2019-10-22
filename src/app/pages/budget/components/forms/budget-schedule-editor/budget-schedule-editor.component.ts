@@ -3,6 +3,7 @@ import { Account } from 'src/app/pages/budget/types/account';
 import { Term } from '../../../types/term';
 import { BudgetSchedule } from '../../../types/budget-schedule';
 import { ObjectCopy } from 'src/app/shared/utils';
+import { BudgetedAccount } from '../../../types/budgeted-account';
 
 @Component({
   selector: 'budget-schedule-editor',
@@ -37,6 +38,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
 
   handleNameChanged(name: string) {
     this.budgetSchedule.name = name;
+  }
+
+  handleBudgetAccountsChanged(accounts: BudgetedAccount[]) {
+    this.budgetSchedule.accounts = ObjectCopy(accounts);
   }
 
   handleSaveAction() {
