@@ -8,9 +8,10 @@
 
   <label>期間</label>
   <term-editor
-    [term]="budgetSchedule.term"
-    (onTermChanged)="handleTermChanged($event)"
+    [name]="'term'"
+    (onChanged)="handleTermChanged($event)"
   ></term-editor>
+
 
   <label>アカウントと予算</label>
   <budgeted-account-selector
@@ -26,3 +27,4 @@
 
   <div *ngIf="budgetSchedule.id">保存されました</div>
 </form>
+{{form.errors}}

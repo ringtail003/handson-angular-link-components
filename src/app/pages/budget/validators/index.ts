@@ -1,0 +1,1 @@
+export { validator as termRange } from './term-range';

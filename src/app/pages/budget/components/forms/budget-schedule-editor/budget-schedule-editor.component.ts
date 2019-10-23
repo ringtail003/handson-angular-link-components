@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
-import { Term } from '../../../types/term';
+import { Term, factory as termFactory } from '../../../types/term';
 import { BudgetSchedule } from '../../../types/budget-schedule';
 import { ObjectCopy } from 'src/app/shared/utils';
 import { BudgetedAccount } from '../../../types/budgeted-account';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as CustomValidators from '../../../validators';
 
 @Component({
   selector: 'budget-schedule-editor',
@@ -29,6 +30,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.form = this.fb.group({
       name: [this.budgetSchedule.name, Validators.required],
+      term: this.fb.group({
+        start: [this.budgetSchedule.term.start, Validators.required],
+        end: [this.budgetSchedule.term.end, Validators.required],
+      }, { validators: CustomValidators.termRange }),
     });
   }
 
@@ -41,7 +46,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   }
 
   handleTermChanged(term: Term) {
-    this.budgetSchedule.term = ObjectCopy(term);
+    this.budgetSchedule.term = termFactory(
+      this.getFormValue('term').start,
+      this.getFormValue('term').end,
+    );
   }
 
   handleNameChanged(name: string) {

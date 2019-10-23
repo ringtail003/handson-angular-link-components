@@ -1,8 +1,10 @@
-<input type="date" 
-  [(ngModel)]="input.start"
-  (change)="onChanged()"
->
-<input type="date" 
-  [(ngModel)]="input.end"
-  (change)="onChanged()"
->
+<ng-container formGroupName="{{name}}">
+  <input type="date"
+    (change)="handleChanged()"
+    formControlName="start"
+  >
+  <input type="date"
+    (change)="handleChanged()"
+    formControlName="end"
+  >
+</ng-container>
