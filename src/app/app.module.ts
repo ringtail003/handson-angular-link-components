@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageComponentModule } from './pages/module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { PageComponentModule } from './pages/module';
     BrowserModule,
     AppRoutingModule,
     PageComponentModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

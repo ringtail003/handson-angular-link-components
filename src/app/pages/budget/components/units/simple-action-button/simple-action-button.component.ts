@@ -6,7 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./simple-action-button.component.scss']
 })
 export class SimpleActionButtonComponent implements OnInit {
-  @Input() label: string;
+  @Input() label: string = null;
+  @Input() disabled: boolean = false;
   @Output() onAction = new EventEmitter<void>();
 
   constructor() { }

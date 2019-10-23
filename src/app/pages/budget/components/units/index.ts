@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AccountPickerComponent } from './account-picker/account-picker.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TermEditorComponent } from './term-editor/term-editor.component';
 import { SimpleActionButtonComponent } from './simple-action-button/simple-action-button.component';
 import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.component';
@@ -18,6 +18,7 @@ import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AccountPickerComponent,

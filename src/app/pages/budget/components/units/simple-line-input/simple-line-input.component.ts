@@ -1,31 +1,26 @@
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'simple-line-input',
   templateUrl: './simple-line-input.component.html',
-  styleUrls: ['./simple-line-input.component.scss']
+  styleUrls: ['./simple-line-input.component.scss'],
+  viewProviders:[{
+    provide: ControlContainer,
+    useExisting: FormGroupDirective,
+  }],
 })
-export class SimpleLineInputComponent implements OnInit, OnChanges {
-  @Input() text: string = null;
-  @Output() onTextChanged = new EventEmitter<string>();
-
-  input: string = null;
+export class SimpleLineInputComponent implements OnInit {
+  @Input() name: string = null;
+  @Output() onChanged = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(changes: { text?: SimpleChange }) {
-    if (!changes.text) {
-      return;
-    }
-
-    this.input = changes.text.currentValue;
-  }
-
-  onChanged() {
-    this.onTextChanged.emit(this.input);
+  handleChanged() {
+    this.onChanged.emit();
   }
 
 }

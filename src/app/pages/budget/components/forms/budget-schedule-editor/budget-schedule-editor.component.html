@@ -1,24 +1,28 @@
-<label>設定名</label>
-<simple-line-input
-  [text]="budgetSchedule.name"
-  (onTextChanged)="handleNameChanged($event)"
-></simple-line-input>
+<form [formGroup]="form">
+  <label>設定名</label>
 
-<label>期間</label>
-<term-editor
-  [term]="budgetSchedule.term"
-  (onTermChanged)="handleTermChanged($event)"
-></term-editor>
+  <simple-line-input
+    [name]="'name'"
+    (onChanged)="handleNameChanged()"
+  ></simple-line-input>
 
-<label>アカウントと予算</label>
-<budgeted-account-selector
-  [accounts]="accounts"
-  (onBudgetAccountsChanged)="handleBudgetAccountsChanged($event)"
-></budgeted-account-selector>
+  <label>期間</label>
+  <term-editor
+    [term]="budgetSchedule.term"
+    (onTermChanged)="handleTermChanged($event)"
+  ></term-editor>
 
-<simple-action-button
-  [label]="labels.save"
-  (onAction)="handleSaveAction()"
-></simple-action-button>
+  <label>アカウントと予算</label>
+  <budgeted-account-selector
+    [accounts]="accounts"
+    (onBudgetAccountsChanged)="handleBudgetAccountsChanged($event)"
+  ></budgeted-account-selector>
 
-<div *ngIf="budgetSchedule.id">保存されました</div>
+  <simple-action-button
+    [label]="labels.save"
+    (onAction)="handleSaveAction()"
+    [disabled]="form.invalid"
+  ></simple-action-button>
+
+  <div *ngIf="budgetSchedule.id">保存されました</div>
+</form>

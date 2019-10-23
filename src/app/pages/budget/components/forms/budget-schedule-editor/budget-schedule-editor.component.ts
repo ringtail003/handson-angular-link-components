@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { Term } from '../../../types/term';
 import { BudgetSchedule } from '../../../types/budget-schedule';
 import { ObjectCopy } from 'src/app/shared/utils';
 import { BudgetedAccount } from '../../../types/budgeted-account';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'budget-schedule-editor',
@@ -19,9 +20,16 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     save: '保存'
   } as const;
 
-  constructor() { }
+  form: FormGroup = null;
+
+  constructor(
+    private fb: FormBuilder,
+  ) {}
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: [this.budgetSchedule.name, Validators.required],
+    });
   }
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
@@ -37,7 +45,7 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   }
 
   handleNameChanged(name: string) {
-    this.budgetSchedule.name = name;
+    this.budgetSchedule.name = this.getFormValue('name');
   }
 
   handleBudgetAccountsChanged(accounts: BudgetedAccount[]) {
@@ -46,6 +54,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
 
   handleSaveAction() {
     this.onSave.emit(this.budgetSchedule);
+  }
+
+  private getFormValue(key: string) {
+    return this.form.get(key).value;
   }
 
 }
