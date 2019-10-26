@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="$form">
   <label>設定名</label>
 
   <simple-line-input
@@ -9,20 +9,20 @@
   <term-editor
     [name]="'term'"
   ></term-editor>
-
+  <span class="error" *ngIf="hasError('term', 'termRange')">開始日が終了日を超えていませんか？</span>
 
   <label>アカウントと予算</label>
   <budgeted-account-selector
-    [form]="form"
+    [form]="$form"
     [accounts]="accounts"
   ></budgeted-account-selector>
+  <span class="error" *ngIf="hasError('budgets', 'arrayLength')">アカウントをひとつ以上選択しましたか？</span>
 
   <simple-action-button
     [label]="labels.save"
     (onAction)="handleSaveAction()"
-    [disabled]="form.invalid"
+    [disabled]="$form.invalid"
   ></simple-action-button>
 
   <div *ngIf="budgetSchedule.id">保存されました</div>
 </form>
-{{form.errors}}

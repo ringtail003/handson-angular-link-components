@@ -3,7 +3,6 @@ import { Account } from 'src/app/pages/budget/types/account';
 import { Term, factory as termFactory } from '../../../types/term';
 import { BudgetSchedule } from '../../../types/budget-schedule';
 import { ObjectCopy } from 'src/app/shared/utils';
-import { BudgetedAccount } from '../../../types/budgeted-account';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as CustomValidators from '../../../validators';
 
@@ -21,14 +20,14 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     save: '保存'
   } as const;
 
-  form: FormGroup = null;
+  $form: FormGroup = null;
 
   constructor(
     private fb: FormBuilder,
   ) {}
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.$form = this.fb.group({
       name: [this.budgetSchedule.name, Validators.required],
       term: this.fb.group({
         start: [this.budgetSchedule.term.start, Validators.required],
@@ -37,7 +36,7 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
       budgets: this.fb.array([], CustomValidators.arrayLength),
     });
 
-    this.form.valueChanges.subscribe(form => console.info('form changed:', form));
+    this.$form.valueChanges.subscribe(form => console.info('form changed:', this.$form));
   }
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
@@ -48,19 +47,16 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     this.budgetSchedule = ObjectCopy(this.budgetSchedule);
   }
 
-  handleTermChanged(term: Term) {
-    this.budgetSchedule.term = termFactory(
-      this.getFormValue('term').start,
-      this.getFormValue('term').end,
-    );
-  }
-
   handleSaveAction() {
     this.onSave.emit(this.budgetSchedule);
   }
 
   private getFormValue(key: string) {
-    return this.form.get(key).value;
+    return this.$form.get(key).value;
+  }
+
+  hasError(name: string, validationKey: string): boolean {
+    return (this.$form.controls[name].errors || {})[validationKey] || false;
   }
 
 }

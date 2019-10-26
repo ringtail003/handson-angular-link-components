@@ -6,7 +6,7 @@ export type forArray = ($array: FormArray) => {[key: string]: any} | null;
 export const Result = {
   noValidate: null,
   valid: null,
-  invalid: key => ({ key: true }),
+  invalid: key => ({ [`${key}`]: true }),
 };
 
 export function get<T>(key, $form: FormGroup): T;

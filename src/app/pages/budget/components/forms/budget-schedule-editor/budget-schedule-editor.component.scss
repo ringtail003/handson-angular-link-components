@@ -5,6 +5,13 @@ label {
   font-weight: 600;
 }
 
+.error {
+  display: block;
+  color: #dc0707;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
 :host ::ng-deep account-list {
   button {
     border-radius: 4px;
