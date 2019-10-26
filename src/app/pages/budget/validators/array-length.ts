@@ -1,13 +1,16 @@
-// import * as Validator from './utils';
+import * as Validator from './utils';
 
-// export const validator: Validator.forFormControl = form => {
-//   const array = Validator.get<Array<any>>(form);
+const ValidationName = 'arrayLength';
 
-//   if (!array) {
-//     return Validator.Result.noValidate;
-//   }
-// console.info(array.length);
-//   return array.length ?
-//     Validator.Result.valid : { arrayLength: Validator.Result.invalid }
-//   ;
-// };
+export const validator: Validator.forArray = ($array) => {
+  const array = Validator.get<any>('budgets', $array);
+
+  if (!array) {
+    return Validator.Result.noValidate;
+  }
+
+  return array.length ?
+    Validator.Result.valid : 
+    Validator.Result.invalid(ValidationName)
+  ;
+};
