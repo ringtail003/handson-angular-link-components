@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AccountPickerComponent } from './account-picker/account-picker.component';
-import { AccountListComponent } from './account-list/account-list.component';
+import { AccountBudgetsSheetComponent } from './account-budgets-sheet/account-budgets-sheet';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TermEditorComponent } from './term-editor/term-editor.component';
@@ -10,7 +10,7 @@ import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.
 @NgModule({
   declarations: [
     AccountPickerComponent,
-    AccountListComponent,
+    AccountBudgetsSheetComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
     SimpleLineInputComponent,
@@ -22,7 +22,7 @@ import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.
   ],
   exports: [
     AccountPickerComponent,
-    AccountListComponent,
+    AccountBudgetsSheetComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
     SimpleLineInputComponent,

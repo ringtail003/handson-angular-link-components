@@ -2,8 +2,8 @@
   [accounts]="accounts"
   (onAccountPicked)="handleAccountPicked($event)"
 ></account-picker>
-<account-list
+<account-budgets-sheet
   [$form]="$form"
   [name]="'budgets'"
   (onAccountDelete)="handleAccountDelete($event)"
-></account-list>
+></account-budgets-sheet>

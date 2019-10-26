@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
-import { BudgetedAccountSelectorComponent } from './budgeted-account-selector/budgeted-account-selector.component';
+import { AccountBudgetsEditorComponent } from './budgeted-account-selector/account-budgets-editor.component';
 import { UnitComponentModule } from '../units';
 
 @NgModule({
   declarations: [
-    BudgetedAccountSelectorComponent,
+    AccountBudgetsEditorComponent,
   ],
   imports: [
     UnitComponentModule,
   ],
   exports: [
-    BudgetedAccountSelectorComponent,
+    AccountBudgetsEditorComponent,
   ],
 })
 export class SharedContainerComponentModule {}

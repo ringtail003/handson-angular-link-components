@@ -4,11 +4,11 @@ import { BudgetedAccount, toBudgetedAccount } from '../../../types/budgeted-acco
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'budgeted-account-selector',
-  templateUrl: './budgeted-account-selector.component.html',
+  selector: 'account-budgets-editor',
+  templateUrl: './account-budgets-editor.component.html',
   styleUrls: []
 })
-export class BudgetedAccountSelectorComponent implements OnInit {
+export class AccountBudgetsEditorComponent implements OnInit {
   @Input() $form: FormGroup = null;
   @Input() accounts: Account[] = [];
 

@@ -51,10 +51,6 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     this.onSave.emit(this.budgetSchedule);
   }
 
-  private getFormValue(key: string) {
-    return this.$form.get(key).value;
-  }
-
   hasError(name: string, validationKey: string): boolean {
     return (this.$form.controls[name].errors || {})[validationKey] || false;
   }
