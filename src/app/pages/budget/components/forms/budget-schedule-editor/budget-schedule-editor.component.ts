@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
-import { Term, factory as termFactory } from '../../../types/term';
 import { BudgetSchedule } from '../../../types/budget-schedule';
 import { ObjectCopy } from 'src/app/shared/utils';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import * as CustomValidators from '../../../validators';
 
 @Component({
@@ -45,6 +44,30 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     }
 
     this.budgetSchedule = ObjectCopy(this.budgetSchedule);
+  }
+
+  get $budgets() {
+    return this.$form.get('budgets') as FormArray;
+  }
+
+  handleAccountPicked(account: Account) {
+    if (this.$budgets.getRawValue().find(item => item.account.code === account.code)) {
+      return;
+    }
+
+    this.$budgets.push(this.$formBuilder.group({
+      account: this.$formBuilder.group({
+        code: account.code,
+        name: account.name,
+      }),
+      amount: 0,
+    }));
+  }
+
+  handleAccountDelete(account: Account) {
+    this.$budgets.removeAt(
+      this.$budgets.getRawValue().findIndex(item => item.code === account.code)
+    );
   }
 
   handleSaveAction() {

@@ -12,10 +12,15 @@
   <span class="error" *ngIf="hasError('term', 'termRange')">開始日が終了日を超えていませんか？</span>
 
   <label>アカウントと予算</label>
-  <account-budgets-editor
-    [$form]="$form"
+  <account-picker
     [accounts]="accounts"
-  ></account-budgets-editor>
+    (onAccountPicked)="handleAccountPicked($event)"
+  ></account-picker>
+  <account-budgets-sheet
+    [$form]="$form"
+    [name]="'budgets'"
+    (onAccountDelete)="handleAccountDelete($event)"
+  ></account-budgets-sheet>
   <span class="error" *ngIf="hasError('budgets', 'arrayLength')">アカウントをひとつ以上選択しましたか？</span>
 
   <simple-action-button
