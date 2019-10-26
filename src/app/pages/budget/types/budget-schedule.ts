@@ -1,9 +1,14 @@
 import { Term } from './term';
-import { BudgetedAccount } from './budgeted-account';
+import { Account } from './account';
 
 export type BudgetSchedule = {
   id?: number;
   name: string;
   term: Term;
-  accounts: BudgetedAccount[];
+  budgets: Budget[];
 };
+
+export type Budget = {
+  account: Account;
+  amount: number;
+}

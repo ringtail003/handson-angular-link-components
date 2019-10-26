@@ -8,7 +8,7 @@ import { BudgetSchedule } from '../../budget/types/budget-schedule';
 export class BudgetScheduleRepository {
   private budgetSchedule: BudgetSchedule = {
     name: null,
-    accounts: [],
+    budgets: [],
     term: {
       start: null,
       end: null,

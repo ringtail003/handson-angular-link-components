@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { BudgetSchedule } from '../../../types/budget-schedule';
-import { ObjectCopy } from 'src/app/shared/utils';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import * as CustomValidators from '../../../validators';
+import { FormArray } from '@angular/forms';
+import { formBuilder, Form } from './form';
 
 @Component({
   selector: 'budget-schedule-editor',
@@ -19,23 +18,11 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     save: '保存'
   } as const;
 
-  $form: FormGroup = null;
+  $form: Form = null;
 
-  constructor(
-    private $formBuilder: FormBuilder,
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.$form = this.$formBuilder.group({
-      name: [this.budgetSchedule.name, Validators.required],
-      term: this.$formBuilder.group({
-        start: [this.budgetSchedule.term.start, Validators.required],
-        end: [this.budgetSchedule.term.end, Validators.required],
-      }, { validators: CustomValidators.termRange }),
-      budgets: this.$formBuilder.array([], CustomValidators.arrayLength),
-    });
-
-    this.$form.valueChanges.subscribe(form => console.info('form changed:', this.$form));
   }
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
@@ -43,39 +30,19 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
       return;
     }
 
-    this.budgetSchedule = ObjectCopy(this.budgetSchedule);
-  }
-
-  get $budgets() {
-    return this.$form.get('budgets') as FormArray;
+    this.$form = formBuilder(this.budgetSchedule);
   }
 
   handleAccountPicked(account: Account) {
-    if (this.$budgets.getRawValue().find(item => item.account.code === account.code)) {
-      return;
-    }
-
-    this.$budgets.push(this.$formBuilder.group({
-      account: this.$formBuilder.group({
-        code: account.code,
-        name: account.name,
-      }),
-      amount: 0,
-    }));
+    this.$form.addBudget(account);
   }
 
   handleAccountDelete(account: Account) {
-    this.$budgets.removeAt(
-      this.$budgets.getRawValue().findIndex(item => item.code === account.code)
-    );
+    this.$form.removeBudget(account);
   }
 
   handleSaveAction() {
-    this.onSave.emit(this.budgetSchedule);
-  }
-
-  hasError(name: string, validationKey: string): boolean {
-    return (this.$form.controls[name].errors || {})[validationKey] || false;
+    this.onSave.emit(this.$form.value);
   }
 
 }
