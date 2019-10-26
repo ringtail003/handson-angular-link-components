@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
@@ -12,15 +12,9 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
 })
 export class TermEditorComponent implements OnInit {
   @Input() name: string = null;
-  @Output() onChanged = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  handleChanged() {
-    this.onChanged.emit();
-  }
-
 }

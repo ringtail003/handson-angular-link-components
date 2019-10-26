@@ -55,14 +55,6 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     );
   }
 
-  handleNameChanged(name: string) {
-    this.budgetSchedule.name = this.getFormValue('name');
-  }
-
-  handleBudgetAccountsChanged(accounts: BudgetedAccount[]) {
-    this.budgetSchedule.accounts = ObjectCopy(accounts);
-  }
-
   handleSaveAction() {
     this.onSave.emit(this.budgetSchedule);
   }

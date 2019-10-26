@@ -12,15 +12,10 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
 })
 export class SimpleLineInputComponent implements OnInit {
   @Input() name: string = null;
-  @Output() onChanged = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  handleChanged() {
-    this.onChanged.emit();
   }
 
 }
