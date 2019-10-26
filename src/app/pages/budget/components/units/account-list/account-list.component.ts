@@ -8,6 +8,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 })
 export class AccountListComponent implements OnInit, OnChanges {
   @Input() $form: FormGroup = null;
+  @Input() name: string = null;
   @Output() onAccountDelete = new EventEmitter<Account>();
 
   constructor() { }
