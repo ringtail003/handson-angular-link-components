@@ -23,17 +23,17 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
   $form: FormGroup = null;
 
   constructor(
-    private fb: FormBuilder,
+    private $formBuilder: FormBuilder,
   ) {}
 
   ngOnInit() {
-    this.$form = this.fb.group({
+    this.$form = this.$formBuilder.group({
       name: [this.budgetSchedule.name, Validators.required],
-      term: this.fb.group({
+      term: this.$formBuilder.group({
         start: [this.budgetSchedule.term.start, Validators.required],
         end: [this.budgetSchedule.term.end, Validators.required],
       }, { validators: CustomValidators.termRange }),
-      budgets: this.fb.array([], CustomValidators.arrayLength),
+      budgets: this.$formBuilder.array([], CustomValidators.arrayLength),
     });
 
     this.$form.valueChanges.subscribe(form => console.info('form changed:', this.$form));
