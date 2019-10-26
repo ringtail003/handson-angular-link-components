@@ -10,15 +10,15 @@ export class AccountPickerComponent implements OnInit {
   @Input() accounts: Account[] = [];
   @Output() onAccountPicked = new EventEmitter<Account>();
 
-  chosen: Account = null;
+  picked: Account = null;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onChanged() {
-    this.onAccountPicked.emit(this.chosen);
+  handleChanged() {
+    this.onAccountPicked.emit(this.picked);
   }
 
 }

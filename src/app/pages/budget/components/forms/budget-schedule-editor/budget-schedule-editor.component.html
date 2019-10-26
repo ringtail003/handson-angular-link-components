@@ -15,8 +15,8 @@
 
   <label>アカウントと予算</label>
   <budgeted-account-selector
+    [form]="form"
     [accounts]="accounts"
-    (onBudgetAccountsChanged)="handleBudgetAccountsChanged($event)"
   ></budgeted-account-selector>
 
   <simple-action-button

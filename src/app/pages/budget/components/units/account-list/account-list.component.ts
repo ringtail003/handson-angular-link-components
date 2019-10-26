@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
-import { BudgetedAccount } from '../../../types/budgeted-account';
-import { ArrayCopy } from 'src/app/shared/utils';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'account-list',
@@ -8,11 +7,8 @@ import { ArrayCopy } from 'src/app/shared/utils';
   styleUrls: ['./account-list.component.scss'],
 })
 export class AccountListComponent implements OnInit, OnChanges {
-  @Input() accounts: BudgetedAccount[] = [];
+  @Input() form: FormGroup = null;
   @Output() onAccountDelete = new EventEmitter<Account>();
-  @Output() onBudgetChanged = new EventEmitter<Account>();
-
-  input: BudgetedAccount[] = [];
 
   constructor() { }
 
@@ -23,16 +19,14 @@ export class AccountListComponent implements OnInit, OnChanges {
     if (!changes.accounts) {
       return;
     }
-
-    this.input = ArrayCopy(changes.accounts.currentValue);
   }
 
-  onDelete(account: Account) {
+  get budgets() {
+    return this.form.get('budgets') as FormArray;
+  }
+
+  handleDelete(account: Account) {
     this.onAccountDelete.emit(account);
-  }
-
-  onChanged(account: Account) {
-    this.onBudgetChanged.emit(account);
   }
 
 }

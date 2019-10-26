@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { BudgetedAccount, toBudgetedAccount } from '../../../types/budgeted-account';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'budgeted-account-selector',
@@ -8,45 +9,37 @@ import { BudgetedAccount, toBudgetedAccount } from '../../../types/budgeted-acco
   styleUrls: []
 })
 export class BudgetedAccountSelectorComponent implements OnInit {
+  @Input() form: FormGroup = null;
   @Input() accounts: Account[] = [];
-  @Output() onBudgetAccountsChanged = new EventEmitter<BudgetedAccount[]>();
 
-  selectableAccounts: Account[] = [];
-  budgetedAccounts: BudgetedAccount[] = [];
+  constructor(
+    private fb: FormBuilder,
+  ) { }
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.selectableAccounts = this.accounts;
+  get budgetControls() {
+    return this.form.get('budgets') as FormArray;
   }
 
   handleAccountPicked(account: Account) {
-    this.budgetedAccounts = this.budgetedAccounts.concat(toBudgetedAccount(account));
-    this.selectableAccounts = this.excludes(this.accounts, this.budgetedAccounts);
-    this.emit();
+    if (this.budgetControls.getRawValue().find(item => item.account.code === account.code)) {
+      return;
+    }
+
+    this.budgetControls.push(this.fb.group({
+      account: this.fb.group({
+        code: account.code,
+        name: account.name,
+      }),
+      amount: 0,
+    }));
   }
 
   handleAccountDelete(account: BudgetedAccount) {
-    this.budgetedAccounts = this.remove(this.budgetedAccounts, account);
-    this.selectableAccounts = this.excludes(this.accounts, this.budgetedAccounts);
-    this.emit();
-  }
-
-  handleBudgetChanged(account) {
-    this.budgetedAccounts.find(item => item.code === account.code).budget = account.budget;
-    this.emit();
-  }
-
-  private remove(list, target) {
-    return list.filter(item => item.code != target.code);
-  }
-
-  private excludes(sources, excludes) {
-    return sources.filter(source => !excludes.find(exclude => source.code === exclude.code));
-  }
-
-  private emit() {
-    this.onBudgetAccountsChanged.emit(this.budgetedAccounts);
+    this.budgetControls.removeAt(
+      this.budgetControls.getRawValue().findIndex(item => item.code === account.code)
+    );
   }
 
 }

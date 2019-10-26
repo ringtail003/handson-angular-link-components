@@ -34,7 +34,10 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
         start: [this.budgetSchedule.term.start, Validators.required],
         end: [this.budgetSchedule.term.end, Validators.required],
       }, { validators: CustomValidators.termRange }),
+      budgets: this.fb.array([]),
     });
+
+    this.form.valueChanges.subscribe(form => console.info('form changed:', form));
   }
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {

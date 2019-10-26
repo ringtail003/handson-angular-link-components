@@ -1,17 +1,13 @@
-<table>
-  <tr *ngFor="let account of input">
-    <td>
-      <span class="name">{{account.name}}</span>
-    </td>
-    <td>
-      <input
-        type="number"
-        [(ngModel)]="account.budget"
-        (change)="onChanged(account)"
-      >
-    </td>
-    <td>
-      <button (click)="onDelete(account)">削除</button>
-    </td>
-  </tr>
-</table>
+<ng-container [formGroup]="form">
+  <table formArrayName="budgets">
+    <tr *ngFor="let control of budgets.controls;let i=index;" formGroupName="{{i}}">
+        <td>
+          <span class="name">{{control.get('account').value.name}}</span>
+        </td>
+        <td>
+          <input type="number" formControlName="amount">
+        </td>
+        <button (click)="handleDelete(control.get('account'))">削除</button>
+      </tr>
+    </table>
+</ng-container>
