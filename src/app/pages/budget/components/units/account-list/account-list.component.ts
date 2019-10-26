@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormArray, FormGroup } from '@angular/forms';
   templateUrl: './account-list.component.html',
   styleUrls: ['./account-list.component.scss'],
 })
-export class AccountListComponent implements OnInit, OnChanges {
+export class AccountListComponent implements OnInit {
   @Input() $form: FormGroup = null;
   @Input() name: string = null;
   @Output() onAccountDelete = new EventEmitter<Account>();
@@ -14,12 +14,6 @@ export class AccountListComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(changes: { accounts?: SimpleChange }) {
-    if (!changes.accounts) {
-      return;
-    }
   }
 
   get budgets() {
