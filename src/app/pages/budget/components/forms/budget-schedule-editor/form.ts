@@ -53,7 +53,7 @@ export class Form extends FormGroup {
 
   removeBudget(account: Account) {
     this.$budgets.removeAt(
-      this.$budgets.getRawValue().findIndex(item => item.code === account.code)
+      this.$budgets.getRawValue().findIndex(item => item.account.code === account.code)
     );
   }
 

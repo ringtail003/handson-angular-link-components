@@ -7,7 +7,7 @@
         <td>
           <input type="number" formControlName="amount">
         </td>
-        <button (click)="handleDelete(control.get('account'))">削除</button>
+        <button (click)="handleDelete(control.get('account').value)">削除</button>
       </tr>
     </table>
 </ng-container>

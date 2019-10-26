@@ -35,10 +35,12 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
 
   handleAccountPicked(account: Account) {
     this.$form.addBudget(account);
+    this.accounts = this.accounts.filter(item => item.code !== account.code);
   }
 
   handleAccountDelete(account: Account) {
     this.$form.removeBudget(account);
+    this.accounts = this.accounts.concat(account);
   }
 
   handleSaveAction() {

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TermEditorComponent } from './term-editor/term-editor.component';
 import { SimpleActionButtonComponent } from './simple-action-button/simple-action-button.component';
 import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.component';
+import { PagePipeModule } from '../../pipes';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SimpleLineInputComponent } from './simple-line-input/simple-line-input.
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    PagePipeModule,
   ],
   exports: [
     AccountPickerComponent,
