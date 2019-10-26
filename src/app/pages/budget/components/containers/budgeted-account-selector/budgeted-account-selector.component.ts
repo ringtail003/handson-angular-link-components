@@ -9,7 +9,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: []
 })
 export class BudgetedAccountSelectorComponent implements OnInit {
-  @Input() form: FormGroup = null;
+  @Input() $form: FormGroup = null;
   @Input() accounts: Account[] = [];
 
   constructor(
@@ -19,7 +19,7 @@ export class BudgetedAccountSelectorComponent implements OnInit {
   ngOnInit() {}
 
   get budgetControls() {
-    return this.form.get('budgets') as FormArray;
+    return this.$form.get('budgets') as FormArray;
   }
 
   handleAccountPicked(account: Account) {

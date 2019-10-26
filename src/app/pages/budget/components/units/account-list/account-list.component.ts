@@ -7,7 +7,7 @@ import { FormArray, FormGroup } from '@angular/forms';
   styleUrls: ['./account-list.component.scss'],
 })
 export class AccountListComponent implements OnInit, OnChanges {
-  @Input() form: FormGroup = null;
+  @Input() $form: FormGroup = null;
   @Output() onAccountDelete = new EventEmitter<Account>();
 
   constructor() { }
@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit, OnChanges {
   }
 
   get budgets() {
-    return this.form.get('budgets') as FormArray;
+    return this.$form.get('budgets') as FormArray;
   }
 
   handleDelete(account: Account) {

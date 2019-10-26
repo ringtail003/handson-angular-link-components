@@ -13,7 +13,7 @@
 
   <label>アカウントと予算</label>
   <budgeted-account-selector
-    [form]="$form"
+    [$form]="$form"
     [accounts]="accounts"
   ></budgeted-account-selector>
   <span class="error" *ngIf="hasError('budgets', 'arrayLength')">アカウントをひとつ以上選択しましたか？</span>
