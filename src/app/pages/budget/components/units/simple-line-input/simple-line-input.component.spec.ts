@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleLineInputComponent } from './simple-line-input.component';
+import { UnitComponentModule } from '..';
 
 describe('SimpleLineInputComponent', () => {
   let component: SimpleLineInputComponent;
@@ -8,7 +9,7 @@ describe('SimpleLineInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleLineInputComponent ]
+      imports: [ UnitComponentModule ],
     })
     .compileComponents();
   }));

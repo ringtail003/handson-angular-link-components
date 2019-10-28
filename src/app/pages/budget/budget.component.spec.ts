@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BudgetComponent } from './budget.component';
+import { BudgetComponentModule } from '.';
 
 describe('BudgetComponent', () => {
   let component: BudgetComponent;
@@ -8,7 +9,7 @@ describe('BudgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BudgetComponent ]
+      imports: [ BudgetComponentModule ],
     })
     .compileComponents();
   }));

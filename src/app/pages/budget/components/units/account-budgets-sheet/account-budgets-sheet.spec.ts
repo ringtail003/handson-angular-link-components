@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountBudgetsSheetComponent } from './account-budgets-sheet';
+import { UnitComponentModule } from '..';
 
 describe('AccountBudgetsSheetComponent', () => {
   let component: AccountBudgetsSheetComponent;
@@ -8,7 +9,7 @@ describe('AccountBudgetsSheetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountBudgetsSheetComponent ]
+      imports: [ UnitComponentModule ],
     })
     .compileComponents();
   }));
