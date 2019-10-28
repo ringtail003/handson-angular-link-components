@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Account } from 'src/app/pages/budget/types/account';
 import { BudgetSchedule } from '../../../types/budget-schedule';
-import { FormArray } from '@angular/forms';
 import { formBuilder, Form } from './form';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'budget-schedule-editor',
@@ -22,15 +22,13 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
     if (!changes.budgetSchedule) {
       return;
     }
-
-    this.$form = formBuilder(this.budgetSchedule);
+    this.$form = formBuilder(changes.budgetSchedule.currentValue);
   }
 
   handleAccountPicked(account: Account) {
