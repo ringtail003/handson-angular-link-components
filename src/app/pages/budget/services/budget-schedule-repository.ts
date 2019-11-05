@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as Rx from 'rxjs';
-import { BudgetSchedule } from '../../budget/types/budget-schedule';
+import { BudgetSchedule } from '../models/budget-schedule';
 
 @Injectable({
   providedIn: 'root',

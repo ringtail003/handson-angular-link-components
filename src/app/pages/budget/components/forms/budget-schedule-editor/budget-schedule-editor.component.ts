@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
-import { Account } from 'src/app/pages/budget/types/account';
-import { BudgetSchedule } from '../../../types/budget-schedule';
+import { Account } from 'src/app/pages/budget/models/account';
+import { BudgetSchedule } from '../../../models/budget-schedule';
 import { formBuilder, Form } from './form';
 import { FormGroup } from '@angular/forms';
 

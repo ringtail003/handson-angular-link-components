@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../../../types/account';
+import { Account } from '../../../models/account';
 import { AccountRepository, BudgetScheduleRepository } from '../../../services';
-import { BudgetSchedule } from '../../../types/budget-schedule';
+import { BudgetSchedule } from '../../../models/budget-schedule';
 
 @Component({
   selector: 'budget-scheduler',

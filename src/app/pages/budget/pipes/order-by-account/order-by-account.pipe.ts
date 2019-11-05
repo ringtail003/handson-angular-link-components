@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Account } from '../../types/account';
+import { Account } from '../../models/account';
 
 @Pipe({
   name: 'orderByAccount'

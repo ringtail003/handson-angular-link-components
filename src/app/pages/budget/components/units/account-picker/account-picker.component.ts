@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Account } from 'src/app/pages/budget/types/account';
+import { Account } from 'src/app/pages/budget/models/account';
 
 @Component({
   selector: 'account-picker',

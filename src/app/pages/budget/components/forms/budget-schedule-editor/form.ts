@@ -1,7 +1,7 @@
 import { FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import * as CustomValidators from '../../../validators';
-import { BudgetSchedule, Budget } from '../../../types/budget-schedule';
-import { Account } from '../../../types/account';
+import { BudgetSchedule, Budget } from '../../../models/budget-schedule';
+import { Account } from '../../../models/account';
 
 export class Form extends FormGroup {
   get $budgets() {

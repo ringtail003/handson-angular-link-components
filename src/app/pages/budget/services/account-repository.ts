@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Rx from 'rxjs';
-import { Account } from '../types/account';
+import { Account } from '../models/account';
 
 @Injectable({
   providedIn: 'root',
