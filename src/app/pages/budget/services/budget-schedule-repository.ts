@@ -6,14 +6,7 @@ import { BudgetSchedule } from '../models/budget-schedule';
   providedIn: 'root',
 })
 export class BudgetScheduleRepository {
-  private budgetSchedule: BudgetSchedule = {
-    name: null,
-    budgets: [],
-    term: {
-      start: null,
-      end: null,
-    }
-  };
+  private budgetSchedule = new BudgetSchedule();
 
   get$(): Rx.Observable<BudgetSchedule> {
     return new Rx.Observable(subscriber =>

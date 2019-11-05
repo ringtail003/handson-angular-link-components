@@ -1,6 +1,7 @@
 import { FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import * as CustomValidators from '../../../validators';
-import { BudgetSchedule, Budget } from '../../../models/budget-schedule';
+import { BudgetSchedule } from '../../../models/budget-schedule';
+import { Budget } from '../../../models/budget';
 import { Account } from '../../../models/account';
 
 export class Form extends FormGroup {
@@ -8,17 +9,27 @@ export class Form extends FormGroup {
     return this.get('budgets') as FormArray;
   }
 
+  findBudgetIndex(account: Account): number {
+    return this.$budgets.getRawValue().findIndex(item => item.account.code === account.code);
+  }
+
   addBudget(account: Account) {
-    if (this.$budgets.getRawValue().find(item => item.account.code === account.code)) {
+    if (this.findBudgetIndex(account) !== -1) {
       return;
     }
 
-    this.$budgets.push(budgetBuilder.build({ account, amount: 0 }));
+    this.$budgets.push(budgetBuilder.build(new Budget({ account, amount: 0 })));
   }
 
   removeBudget(account: Account) {
+    const index = this.findBudgetIndex(account);
+
+    if (index === -1) {
+      throw new Error('account not found in budgets.');
+    }
+
     this.$budgets.removeAt(
-      this.$budgets.getRawValue().findIndex(item => item.account.code === account.code)
+      this.findBudgetIndex(account)
     );
   }
 

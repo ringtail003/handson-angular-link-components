@@ -1,8 +1,15 @@
-export type Term = {
-  start: Date;
-  end: Date;
-}
+export class Term {
+  public readonly start;
+  public readonly end;
 
-export function factory(start, end): Term {
-  return { start, end };
+  constructor(
+    args?: {
+      start?: Date;
+      end?: Date;
+    }
+  ) {
+    const _args = args || {};
+    this.start = _args.start || null;
+    this.end = _args.end || null;
+  }
 }
