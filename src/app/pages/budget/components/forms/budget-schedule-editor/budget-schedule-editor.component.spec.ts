@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 import { BudgetScheduleEditorComponent } from './budget-schedule-editor.component';
 import { FormComponentModule } from '..';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BudgetSchedule } from '../../../models/budget-schedule';
 
 describe('BudgetScheduleEditorComponent', () => {
   let component: BudgetScheduleEditorComponent;
@@ -23,7 +24,7 @@ describe('BudgetScheduleEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BudgetScheduleEditorComponent);
     component = fixture.componentInstance;
-    const budgetSchedule = {
+    const budgetSchedule: BudgetSchedule = {
       name: 'foo',
       term: {
         start: DateTime.fromISO('2019-11-01').toJSDate(),
