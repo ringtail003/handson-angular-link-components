@@ -22,13 +22,19 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.build();
+  }
 
   ngOnChanges(changes: { budgetSchedule?: SimpleChange }) {
     if (!changes.budgetSchedule) {
       return;
     }
-    this.$form = formBuilder(changes.budgetSchedule.currentValue);
+    this.build();
+  }
+
+  private build() {
+    this.$form = formBuilder.build(this.budgetSchedule);
   }
 
   handleAccountPicked(account: Account) {
