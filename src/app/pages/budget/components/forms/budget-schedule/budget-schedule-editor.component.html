@@ -12,10 +12,10 @@
   <span class="error" *ngIf="$form.hasError('term', 'termRange')">開始日が終了日を超えていませんか？</span>
 
   <label>アカウントと予算</label>
-  <account-picker
+  <account-selector
     [accounts]="accounts"
-    (onAccountPicked)="handleAccountPicked($event)"
-  ></account-picker>
+    (onSelected)="handleAccountSelected($event)"
+  ></account-selector>
   <account-budgets-sheet
     [$form]="$form"
     [name]="'budgets'"

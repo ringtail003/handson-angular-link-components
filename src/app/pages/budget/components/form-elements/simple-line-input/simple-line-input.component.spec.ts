@@ -1,16 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnitComponentModule } from '..';
+import { FormElementComponentModule } from '..';
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DateTime } from 'luxon';
-
 @Component({
   template: `
     <form [formGroup]="$form">
-      <term-editor [name]="'foo'"></term-editor>
+      <simple-line-input [name]="'foo'"></simple-line-input>
     </form>
   `
 })
@@ -19,22 +17,19 @@ class MockContainerComponent implements OnInit {
 
   ngOnInit() {
     this.$form = new FormGroup({
-      foo: new FormGroup({
-        start: new FormControl(DateTime.fromISO('2019-11-01').toISODate()),
-        end: new FormControl(DateTime.fromISO('2019-12-12').toISODate()),
-      })
+      foo: new FormControl('foo'),
     });
   }
 }
 
-describe('TermEditorComponent', () => {
+describe('SimpleLineInputComponent', () => {
   let component: MockContainerComponent;
   let fixture: ComponentFixture<MockContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        UnitComponentModule,
+        FormElementComponentModule,
         ReactiveFormsModule,
         FormsModule,
       ],
@@ -56,7 +51,6 @@ describe('TermEditorComponent', () => {
   });
 
   it('display value', () => {
-    expect(fixture.debugElement.query(By.css('input[formcontrolname="start"]')).nativeElement.value).toBe('2019-11-01');
-    expect(fixture.debugElement.query(By.css('input[formcontrolname="end"]')).nativeElement.value).toBe('2019-12-12');
+    expect(fixture.debugElement.query(By.css('input')).nativeElement.value).toBe('foo');
   });
 });

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { UnitComponentModule } from './units';
+import { FormElementComponentModule } from './form-elements';
 import { FormComponentModule } from './forms';
-import { WidgetComponentModule } from './widgets';
+import { WidgetComponentModule } from './container';
 
 @NgModule({
   exports: [
-    UnitComponentModule,
+    FormElementComponentModule,
     FormComponentModule,
     WidgetComponentModule,
   ],

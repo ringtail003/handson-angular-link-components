@@ -37,7 +37,7 @@ export class BudgetScheduleEditorComponent implements OnInit, OnChanges {
     this.$form = formBuilder.build(this.budgetSchedule);
   }
 
-  handleAccountPicked(account: Account) {
+  handleAccountSelected(account: Account) {
     this.$form.addBudget(account);
     this.accounts = this.accounts.filter(item => item.code !== account.code);
   }

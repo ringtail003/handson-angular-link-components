@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AccountPickerComponent } from './account-picker/account-picker.component';
+import { AccountSelectorComponent } from './account-selector/account-selector.component';
 import { AccountBudgetsSheetComponent } from './account-budgets-sheet/account-budgets-sheet';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { PagePipeModule } from '../../pipes';
 
 @NgModule({
   declarations: [
-    AccountPickerComponent,
+    AccountSelectorComponent,
     AccountBudgetsSheetComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
@@ -23,11 +23,11 @@ import { PagePipeModule } from '../../pipes';
     PagePipeModule,
   ],
   exports: [
-    AccountPickerComponent,
+    AccountSelectorComponent,
     AccountBudgetsSheetComponent,
     TermEditorComponent,
     SimpleActionButtonComponent,
     SimpleLineInputComponent,
   ],
 })
-export class UnitComponentModule {}
+export class FormElementComponentModule {}

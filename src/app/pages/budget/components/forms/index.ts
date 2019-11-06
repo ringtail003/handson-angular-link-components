@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { UnitComponentModule } from '../units';
-import { BudgetScheduleEditorComponent } from './budget-schedule-editor/budget-schedule-editor.component';
+import { FormElementComponentModule } from '../form-elements';
+import { BudgetScheduleEditorComponent } from './budget-schedule/budget-schedule-editor.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BudgetScheduleEditorComponent,
   ],
   imports: [
-    UnitComponentModule,
+    FormElementComponentModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
